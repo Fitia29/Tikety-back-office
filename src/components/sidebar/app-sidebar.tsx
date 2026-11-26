@@ -72,9 +72,8 @@ export function AppSidebar() {
     >
       <SidebarHeader
         className={cn(
-          "gap-[34px] p-8 transition-[padding] duration-200",
-          compact ? "items-center px-0" : "p-8"
-        )}
+        "gap-6 px-[22px] pt-[22px]",   
+      )}
       >
         <div className="flex w-full items-center justify-between">
           <a href="#" className={cn("flex items-center gap-1.5", compact && "mx-auto")}>
@@ -93,34 +92,36 @@ export function AppSidebar() {
           )}
         </div>
 
-        {!compact && (
-          <label className="flex h-10 w-full items-center gap-2.5 rounded-full border-2 border-white/50 px-3.5 text-white/80 focus-within:ring-3 focus-within:ring-white/30">
-            <Search className="size-4 shrink-0" />
-            <input
-              aria-label="Rechercher"
-              placeholder="Rechercher..."
-              className="min-w-0 flex-1 bg-transparent text-[12px] text-white outline-none placeholder:text-white/70"
-            />
-          </label>
-        )}
+        <div className="h-10 w-full">
+          {!compact && (
+            <label className="flex h-10 w-full items-center gap-2.5 rounded-full border border-white/70 px-3.5 text-white/80 focus-within:ring-3 focus-within:ring-white/30">
+              <Search className="size-4 shrink-0" />
+              <input
+                aria-label="Rechercher"
+                placeholder="Rechercher..."
+                className="min-w-0 flex-1 bg-transparent text-[13px] text-white outline-none placeholder:text-white/70"
+              />
+            </label>
+          )}
+        </div>
       </SidebarHeader>
 
       <SidebarContent
         className={cn(
-          "gap-0 pt-[34px] transition-[padding] duration-200",
-          compact ? "px-0" : "px-8"
+          "gap-0 px-[18px] pt-4",       
+          "group-data-[collapsible=icon]:overflow-auto!"
         )}
       >
         {navigationGroups.map((group) => (
-          <SidebarGroup key={group.label} className="p-0 pb-6">
+          <SidebarGroup key={group.label} className="p-0 pb-4">
             {compact ? (
-              <div className="mx-auto mb-3 h-5 w-6 border-b border-white/20" />
+              <div className="mx-auto mb-2 h-5 w-6 border-b border-white/20" />
             ) : (
-              <SidebarGroupLabel className="mb-3 h-5 px-0 text-sm font-normal whitespace-nowrap text-white/80 group-data-[collapsible=icon]:mt-0! group-data-[collapsible=icon]:opacity-100!">
+              <SidebarGroupLabel className="mb-2 h-5 px-0 text-sm font-normal whitespace-nowrap text-white/80 group-data-[collapsible=icon]:mt-0! group-data-[collapsible=icon]:opacity-100!">
                 {group.label}
               </SidebarGroupLabel>
             )}
-            <SidebarMenu className="gap-[26px]">
+            <SidebarMenu className="gap-2">   {/* au lieu de gap-[26px] */}
               {group.items.map(({ label, icon: Icon, active }) => (
                 <SidebarMenuItem key={label}>
                   <SidebarMenuButton
@@ -128,11 +129,14 @@ export function AppSidebar() {
                     render={<a href="#" />}
                     aria-label={label}
                     className={cn(
-                      "gap-2.5 rounded-md text-base whitespace-nowrap text-white hover:bg-white/10 hover:text-white group-data-[collapsible=icon]:h-7!",
+                      "h-10 gap-3 rounded-[6px] px-[13px] py-2 text-base whitespace-nowrap",
+                      "group-data-[collapsible=icon]:h-10! group-data-[collapsible=icon]:px-[13px]!",
                       compact
-                        ? "mx-auto justify-center group-data-[collapsible=icon]:w-10! group-data-[collapsible=icon]:p-0!"
-                        : "group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:px-2.5!",
-                      active && "bg-primary hover:bg-primary"
+                        ? "group-data-[collapsible=icon]:w-11!"
+                        : "group-data-[collapsible=icon]:w-full!",
+                      active
+                        ? "bg-primary text-white hover:bg-primary hover:text-white active:bg-primary active:text-white data-active:bg-primary data-active:text-white"
+                        : "text-white hover:bg-white/10 hover:text-white active:bg-white/10 active:text-white"
                     )}
                   >
                     <Icon className="size-[18px] shrink-0" />
