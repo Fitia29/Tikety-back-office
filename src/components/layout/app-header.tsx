@@ -4,7 +4,7 @@ import { Bell, ChevronDown, Settings, User } from "lucide-react"
 export function AppHeader() {
   return (
     <header className="flex h-[85px] shrink-0 items-center justify-between gap-6 border-b border-slate-200 bg-white px-[22px]">
-      <p className="text-sm font-medium text-slate-900">
+      <p className="text-paragraphe font-semibold text-foreground">
         Envie de lancer votre propre événement ? Basculez en mode organisateur dès
         maintenant.
       </p>
